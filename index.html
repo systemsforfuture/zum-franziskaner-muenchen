@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zum Franziskaner München — Bayerische Tradition seit 1363</title>
+<meta name="description" content="Zum Franziskaner in München — bayerische Küche und Gastlichkeit seit 1363. Weißwürste, Löwenbräu, WirtshausWiesn und Veranstaltungsräume für bis zu 150 Personen an der Residenzstraße.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent: #C9A55A;
+  --accent-light: #dbb96e;
+  --accent-dim: rgba(201,165,90,0.14);
+  --accent-border: rgba(201,165,90,0.28);
+  --bg: #07060a;
+  --bg2: #0d0b0f;
+  --bg3: #131018;
+  --text: #f0ece3;
+  --text-muted: rgba(240,236,227,0.5);
+  --blue: #1A3A5C;
+  --radius: 2px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.6; overflow-x: hidden; }
+
+/* PRELOADER */
+#preloader { position: fixed; inset: 0; background: var(--bg); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 0.6s ease 0.3s; }
+#preloader.gone { opacity: 0; pointer-events: none; }
+.preloader-inner { text-align: center; }
+.preloader-emblem { width: 60px; height: 60px; margin: 0 auto 20px; border: 1px solid var(--accent-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--accent); animation: spin-slow 3s linear infinite; }
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.preloader-text { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; letter-spacing: 0.3em; color: var(--text-muted); text-transform: uppercase; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.8rem 4rem; display: flex; align-items: center; justify-content: space-between; transition: all 0.4s ease; }
+nav.scrolled { background: rgba(7,6,10,0.95); backdrop-filter: blur(12px); padding: 1.2rem 4rem; border-bottom: 1px solid var(--accent-border); }
+.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500; letter-spacing: 0.05em; color: var(--text); text-decoration: none; }
+.nav-logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.3s; }
+.nav-links a:hover { color: var(--accent-light); }
+.nav-cta { background: var(--accent); color: var(--bg) !important; padding: 0.6rem 1.4rem; border-radius: var(--radius); font-weight: 500; }
+.nav-cta:hover { background: var(--accent-light) !important; }
+
+/* HERO */
+.hero { position: relative; height: 100vh; min-height: 700px; display: flex; align-items: center; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1800&q=85'); background-size: cover; background-position: center; transform: scale(1.05); transition: transform 10s ease-out; }
+.hero-bg.loaded { transform: scale(1); }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(7,6,10,0.88) 0%, rgba(7,6,10,0.45) 60%, rgba(201,165,90,0.08) 100%); }
+.hero-diamond { position: absolute; top: 20vh; right: 6vw; width: 240px; height: 240px; border: 1px solid var(--accent-border); transform: rotate(45deg); opacity: 0.35; }
+.hero-diamond::before { content:''; position:absolute; inset:20px; border: 1px solid var(--accent-border); }
+.hero-content { position: relative; z-index: 2; padding: 0 4rem; max-width: 680px; }
+.hero-year { display: flex; align-items: center; gap: 1.2rem; margin-bottom: 1.8rem; }
+.hero-year-line { flex: 1; max-width: 50px; height: 1px; background: var(--accent); }
+.hero-year-text { font-family: 'Cormorant Garamond', serif; font-size: 1rem; letter-spacing: 0.3em; color: var(--accent); }
+.hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.2rem, 6vw, 5.8rem); font-weight: 300; line-height: 1.1; margin-bottom: 1.2rem; }
+.hero h1 em { font-style: italic; color: var(--accent-light); }
+.hero-tagline { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.15rem; color: var(--text-muted); margin-bottom: 2.5rem; }
+.hero-actions { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+.btn-primary { background: var(--accent); color: var(--bg); padding: 0.9rem 2.2rem; text-decoration: none; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; border-radius: var(--radius); transition: background 0.3s; font-weight: 500; }
+.btn-primary:hover { background: var(--accent-light); }
+.btn-secondary { border: 1px solid var(--accent-border); color: var(--text); padding: 0.9rem 2.2rem; text-decoration: none; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; border-radius: var(--radius); transition: border-color 0.3s, color 0.3s; }
+.btn-secondary:hover { border-color: var(--accent); color: var(--accent-light); }
+
+/* HERITAGE BAR */
+.heritage-bar { background: var(--accent); padding: 1.2rem 4rem; display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+.heritage-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--bg); font-weight: 500; }
+.heritage-item::before { content: '✦'; font-size: 0.6rem; color: rgba(7,6,10,0.4); }
+
+/* STATS BAR */
+.stats-bar { background: var(--bg2); border-bottom: 1px solid var(--accent-border); padding: 2.5rem 4rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.stat-item { text-align: center; padding: 0.5rem; }
+.stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 400; background: linear-gradient(135deg, var(--accent-light), var(--text)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.stat-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.3rem; }
+
+/* SECTION BASICS */
+section { padding: 7rem 4rem; }
+.section-eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.section-eyebrow::before { content: ''; width: 30px; height: 1px; background: var(--accent); }
+.eyebrow-text { font-size: 0.75rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 3.6rem); font-weight: 300; line-height: 1.2; margin-bottom: 1.5rem; }
+.section-title em { font-style: italic; color: var(--accent-light); }
+.section-body { color: var(--text-muted); font-size: 1rem; line-height: 1.8; max-width: 600px; }
+
+/* ABOUT / GESCHICHTE */
+.about { background: var(--bg); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+.about-img-stack { position: relative; height: 580px; }
+.about-img-main { position: absolute; top: 0; left: 0; right: 60px; bottom: 80px; background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=900&q=80'); background-size: cover; background-position: center; }
+.about-img-accent { position: absolute; bottom: 0; right: 0; left: 80px; height: 200px; background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80'); background-size: cover; background-position: center; border: 4px solid var(--bg); }
+.about-quote { margin-top: 2rem; padding: 1.5rem; border-left: 3px solid var(--accent); background: var(--accent-dim); }
+.about-quote p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.15rem; color: var(--text); line-height: 1.6; }
+.about-quote cite { display: block; margin-top: 0.8rem; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-style: normal; }
+
+/* FRÜHSCHOPPEN */
+.fruehschoppen { background: var(--bg3); }
+.fruehschoppen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem; }
+.fruehschoppen-img { height: 480px; background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=900&q=80'); background-size: cover; background-position: center; }
+.fruehschoppen-content { }
+.fruehschoppen-highlight { background: var(--accent); color: var(--bg); padding: 1.8rem 2rem; margin-bottom: 2rem; }
+.fruehschoppen-highlight .price { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 500; }
+.fruehschoppen-highlight .price-sub { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.8; }
+.fruehschoppen-highlight .what { margin-top: 0.8rem; font-size: 0.9rem; font-weight: 500; }
+.fruehschoppen-highlight .when { font-size: 0.78rem; opacity: 0.7; margin-top: 0.3rem; }
+
+/* SPEISEKARTE */
+.menu { background: var(--bg2); }
+.menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+.menu-card { background: var(--bg3); border: 1px solid var(--accent-border); border-radius: var(--radius); overflow: hidden; transition: transform 0.3s, border-color 0.3s; }
+.menu-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+.menu-card-img { height: 190px; background-size: cover; background-position: center; }
+.menu-card-body { padding: 1.5rem; }
+.menu-card-tag { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+.menu-card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; margin-bottom: 0.5rem; }
+.menu-card-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+.menu-card-price { margin-top: 1rem; font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--accent-light); }
+
+/* GALLERY */
+.gallery { background: var(--bg); }
+.gallery-grid { display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: 300px 300px; gap: 4px; margin-top: 3rem; }
+.g1 { grid-column: 1/5; grid-row:1/2; background-image:url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80'); background-size:cover; background-position:center; }
+.g2 { grid-column: 5/9; grid-row:1/3; background-image:url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80'); background-size:cover; background-position:center; }
+.g3 { grid-column: 9/13; grid-row:1/2; background-image:url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=700&q=80'); background-size:cover; background-position:center; }
+.g4 { grid-column: 1/3; grid-row:2/3; background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80'); background-size:cover; background-position:center; }
+.g5 { grid-column: 3/5; grid-row:2/3; background-image:url('https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&q=80'); background-size:cover; background-position:center; }
+.g6 { grid-column: 9/13; grid-row:2/3; background-image:url('https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=700&q=80'); background-size:cover; background-position:center; }
+
+/* PANORAMA */
+.panorama { height: 380px; background-image: url('https://images.unsplash.com/photo-1599946347371-68eb71b16afc?w=1800&q=80'); background-attachment: fixed; background-size: cover; background-position: center; position: relative; }
+.panorama-overlay { position:absolute; inset:0; background:rgba(7,6,10,0.62); display:flex; align-items:center; justify-content:center; }
+.panorama-text { text-align:center; }
+.panorama-text p { font-family:'Cormorant Garamond',serif; font-size:clamp(1.4rem,3vw,2.4rem); font-style:italic; color:var(--text); max-width:700px; line-height:1.5; }
+.panorama-text cite { display:block; margin-top:1rem; font-size:0.8rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent-light); font-style:normal; }
+
+/* VERANSTALTUNGEN */
+.events { background: var(--bg3); }
+.events-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+.event-card { padding: 2rem; border: 1px solid var(--accent-border); background: var(--bg2); border-radius: var(--radius); transition: border-color 0.3s; }
+.event-card:hover { border-color: var(--accent); }
+.event-icon { font-size: 2rem; margin-bottom: 1rem; }
+.event-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 0.8rem; }
+.event-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; }
+.event-capacity { margin-top: 1rem; font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+
+/* REVIEWS */
+.reviews { background: var(--bg2); }
+.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+.review-card { padding: 2rem; background: var(--bg3); border: 1px solid var(--accent-border); border-radius: var(--radius); }
+.review-stars { color: var(--accent); font-size: 0.9rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
+.review-text { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; font-style: italic; margin-bottom: 1.5rem; }
+.review-author { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-light); }
+
+/* INFO */
+.info { background: var(--bg); }
+.info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; margin-top: 3rem; }
+.info-block h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; margin-bottom: 1.2rem; }
+.info-row { display: flex; gap: 1rem; margin-bottom: 0.6rem; align-items: flex-start; }
+.info-label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); min-width: 70px; padding-top: 0.1rem; }
+.info-value { font-size: 0.9rem; color: var(--text); }
+.info-value a { color: var(--accent-light); text-decoration: none; }
+.info-time-row { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; }
+.info-time-row .day { color: var(--text-muted); }
+.info-time-row .time { color: var(--text); }
+
+/* CTA */
+.cta-section { background: linear-gradient(135deg, var(--bg3) 0%, rgba(201,165,90,0.08) 100%); padding: 7rem 4rem; text-align: center; border-top: 1px solid var(--accent-border); }
+.cta-section .section-title { margin: 0 auto 1.5rem; }
+.cta-section .section-body { margin: 0 auto 2.5rem; text-align: center; }
+.cta-actions { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+
+/* FOOTER */
+footer { background: var(--bg); border-top: 1px solid var(--accent-border); padding: 4rem 4rem 2rem; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; margin-bottom: 3rem; }
+.footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; margin-bottom: 1rem; }
+.footer-brand span { color: var(--accent); }
+.footer-desc { font-size: 0.83rem; color: var(--text-muted); line-height: 1.7; }
+.footer-col h4 { font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; }
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-col a { font-size: 0.83rem; color: var(--text-muted); text-decoration: none; transition: color 0.3s; }
+.footer-col a:hover { color: var(--text); }
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 2rem; display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* SCROLL PROGRESS */
+#scroll-progress { position: fixed; top: 0; left: 0; height: 2px; background: var(--accent); z-index: 9998; transition: width 0.1s linear; }
+
+/* BACK TO TOP */
+#back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; background: var(--accent); border: none; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(10px); transition: all 0.3s; z-index: 200; }
+#back-to-top.visible { opacity: 1; transform: translateY(0); }
+#back-to-top svg { width: 18px; height: 18px; fill: none; stroke: var(--bg); stroke-width: 2; }
+
+/* COOKIE */
+#cookie-banner { position: fixed; bottom: 2rem; left: 2rem; right: 2rem; max-width: 600px; background: var(--bg3); border: 1px solid var(--accent-border); border-radius: var(--radius); padding: 1.5rem 2rem; z-index: 500; display: flex; gap: 1.5rem; align-items: center; box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+#cookie-banner.hidden { display: none; }
+#cookie-banner p { font-size: 0.82rem; color: var(--text-muted); flex: 1; line-height: 1.5; }
+#cookie-banner a { color: var(--accent-light); }
+.cookie-btn { background: var(--accent); border: none; color: var(--bg); padding: 0.6rem 1.4rem; font-size: 0.8rem; cursor: pointer; border-radius: var(--radius); white-space: nowrap; font-family: 'DM Sans', sans-serif; font-weight: 500; }
+
+@media (max-width: 900px) {
+  nav { padding: 1.2rem 1.5rem; }
+  nav.scrolled { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .hero-content { padding: 0 1.5rem; }
+  .hero-diamond { display: none; }
+  section { padding: 5rem 1.5rem; }
+  .stats-bar { grid-template-columns: repeat(2,1fr); padding: 2rem 1.5rem; }
+  .heritage-bar { padding: 1.2rem 1.5rem; gap: 1.5rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .about-img-stack { height: 380px; }
+  .fruehschoppen-grid { grid-template-columns: 1fr; }
+  .menu-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .g1,.g2,.g3,.g4,.g5,.g6 { grid-column: auto; grid-row: auto; height: 200px; }
+  .events-grid { grid-template-columns: 1fr; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .info-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .cta-section { padding: 5rem 1.5rem; }
+  #cookie-banner { left: 1rem; right: 1rem; flex-direction: column; }
+  .panorama { background-attachment: scroll; }
+}
+</style>
+</head>
+<body>
+
+<div id="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-emblem">F</div>
+    <div class="preloader-text">Zum Franziskaner</div>
+  </div>
+</div>
+
+<div id="scroll-progress"></div>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">Zum Franziskaner<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#geschichte">Geschichte</a></li>
+    <li><a href="#speisekarte">Speisekarte</a></li>
+    <li><a href="#veranstaltungen">Events</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="tel:+498923181120" class="nav-cta">Reservieren</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-bg" id="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-diamond"></div>
+  <div class="hero-content">
+    <div class="hero-year">
+      <div class="hero-year-line"></div>
+      <span class="hero-year-text">Seit 1363</span>
+      <div class="hero-year-line"></div>
+    </div>
+    <h1>Bayerische<br><em>Seele</em> in<br>München</h1>
+    <p class="hero-tagline">Wo Tradition auf modernes Handwerk trifft</p>
+    <div class="hero-actions">
+      <a href="tel:+498923181120" class="btn-primary">Jetzt reservieren</a>
+      <a href="#speisekarte" class="btn-secondary">Zur Speisekarte</a>
+    </div>
+  </div>
+</section>
+
+<div class="heritage-bar">
+  <div class="heritage-item">Seit 1363</div>
+  <div class="heritage-item">Residenzstraße 9</div>
+  <div class="heritage-item">Löwenbräu seit Generationen</div>
+  <div class="heritage-item">WirtshausWiesn ganzjährig</div>
+  <div class="heritage-item">Events bis 150 Personen</div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-item reveal">
+    <div class="stat-num">660+</div>
+    <div class="stat-label">Jahre Tradition</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num">10–150</div>
+    <div class="stat-label">Personen (Events)</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num">Täglich</div>
+    <div class="stat-label">10:00 – 00:00 Uhr</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num">Innenstadt</div>
+    <div class="stat-label">Nächst. Residenz</div>
+  </div>
+</div>
+
+<section class="about" id="geschichte">
+  <div class="about-grid">
+    <div class="about-img-stack reveal">
+      <div class="about-img-main"></div>
+      <div class="about-img-accent"></div>
+    </div>
+    <div class="about-content">
+      <div class="section-eyebrow"><span class="eyebrow-text">Geschichte</span></div>
+      <h2 class="section-title reveal">Über <em>660 Jahre</em> bayerische Gastlichkeit</h2>
+      <p class="section-body reveal">Seit 1363 steht der Name „Zum Franziskaner" für echte bayerische Küche und herzliche Gastlichkeit in München. An der Residenzstraße 9, direkt neben der königlichen Residenz, empfangen wir unsere Gäste mit einer Mischung aus Tradition und moderner Handwerkskunst.</p>
+      <p class="section-body reveal" style="margin-top:1rem">Familie Reinbold führt das Haus in dieser Tradition fort — nicht nur durch den Erhalt der klassischen bayerischen Küche, sondern auch durch die moderne, frische Küche, die bei uns Einzug gehalten hat. Weißwürste, Franziskaner Senf und Löwenbräu bleiben der Kern — ergänzt durch saisonale Kreationen unserer Köche.</p>
+      <div class="about-quote reveal">
+        <p>„Nicht nur durch den Erhalt unserer traditionellen, gepflegten bayerischen Küche — sondern auch die moderne, frische Küche, die bei uns Einzug gehalten hat."</p>
+        <cite>— Familie Reinbold, Zum Franziskaner</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="fruehschoppen" id="fruehschoppen">
+  <div class="section-eyebrow"><span class="eyebrow-text">Frühschoppen</span></div>
+  <h2 class="section-title reveal">Die Kunst des <em>Weißwurst-</em>Frühstücks</h2>
+  <div class="fruehschoppen-grid">
+    <div class="fruehschoppen-img reveal"></div>
+    <div class="fruehschoppen-content">
+      <div class="fruehschoppen-highlight reveal">
+        <div class="price">12,90 €</div>
+        <div class="price-sub">pro Person</div>
+        <div class="what">Weißwürste oder Leberkäse · Breze · Senf · Bier</div>
+        <div class="when">Täglich 10:00 – 11:30 Uhr</div>
+      </div>
+      <p class="section-body reveal">Das Weißwurst-Frühstück ist in München kein Klischee — es ist ein Ritual. Bei uns beginnt es mit unserem hausgemachten Franziskaner Senf, dem leichten Snap beim Aufschneiden der Wurst und dem ersten Schluck frischen Löwenbräus.</p>
+      <p class="section-body reveal" style="margin-top:1rem">Unsere Weißwürste werden täglich frisch geliefert, nach traditionellem Münchner Rezept — ohne Pökelsalz, ohne Konservierungsstoffe. Das ist der Unterschied.</p>
+    </div>
+  </div>
+</section>
+
+<section class="menu" id="speisekarte">
+  <div class="section-eyebrow"><span class="eyebrow-text">Speisekarte</span></div>
+  <h2 class="section-title reveal">Von der <em>Residenzstraße</em> auf den Tisch</h2>
+  <p class="section-body reveal">Klassische bayerische Küche, saisonal ergänzt — von der Brotzeit bis zum mehrgängigen Dinner.</p>
+  <div class="menu-grid">
+    <div class="menu-card reveal">
+      <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1619216116655-90a85e2e7bd4?w=600&q=80')"></div>
+      <div class="menu-card-body">
+        <div class="menu-card-tag">Klassiker</div>
+        <div class="menu-card-title">Weißwürste</div>
+        <div class="menu-card-desc">Drei frische Weißwürste mit hausgemachtem Franziskaner Senf, süßem Senf und frischer Breze — das Original aus München.</div>
+        <div class="menu-card-price">ab 9,80 €</div>
+      </div>
+    </div>
+    <div class="menu-card reveal">
+      <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80')"></div>
+      <div class="menu-card-body">
+        <div class="menu-card-tag">Hauptspeise</div>
+        <div class="menu-card-title">Schweinsbraten</div>
+        <div class="menu-card-desc">Knuspriger Schweinsbraten mit dunkler Biersauce, Knödeln und Blaukraut — nach Omas Rezept, verfeinert für unsere Küche.</div>
+        <div class="menu-card-price">ab 22,50 €</div>
+      </div>
+    </div>
+    <div class="menu-card reveal">
+      <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1600891964092-4316c288032e?w=600&q=80')"></div>
+      <div class="menu-card-body">
+        <div class="menu-card-tag">Brotzeit</div>
+        <div class="menu-card-title">Franziskaner Brotzeit</div>
+        <div class="menu-card-desc">Obatzda, Leberwurst, Radieschen, Rettich, eingelegte Gurken, frisches Bauernbrot — bayerische Brotzeit für zwei Personen.</div>
+        <div class="menu-card-price">ab 16,90 €</div>
+      </div>
+    </div>
+    <div class="menu-card reveal">
+      <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=600&q=80')"></div>
+      <div class="menu-card-body">
+        <div class="menu-card-tag">Schmankerl</div>
+        <div class="menu-card-title">Leberkäse mit Spiegelei</div>
+        <div class="menu-card-desc">Frischer Leberkäse, direkt aus dem Ofen, mit knusprigem Spiegelei, Senf und Kartoffelsalat nach Großmutters Art.</div>
+        <div class="menu-card-price">ab 14,50 €</div>
+      </div>
+    </div>
+    <div class="menu-card reveal">
+      <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=600&q=80')"></div>
+      <div class="menu-card-body">
+        <div class="menu-card-tag">Modern</div>
+        <div class="menu-card-title">Tagesgericht</div>
+        <div class="menu-card-desc">Saisonal wechselnde Gerichte unserer Köche — von der modernen bayerischen Küche inspiriert, täglich frisch auf der Tageskarte.</div>
+        <div class="menu-card-price">Täglich wechselnd</div>
+      </div>
+    </div>
+    <div class="menu-card reveal">
+      <div class="menu-card-img" style="background-image:url('https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&q=80')"></div>
+      <div class="menu-card-body">
+        <div class="menu-card-tag">Dessert</div>
+        <div class="menu-card-title">Dampfnudel</div>
+        <div class="menu-card-desc">Hausgemachte Dampfnudel mit Vanillesauce und Zwetschgenkompott — ein Kindheitstraum auf dem Teller.</div>
+        <div class="menu-card-price">ab 8,90 €</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gallery" id="galerie">
+  <div style="padding:0 4rem 2rem">
+    <div class="section-eyebrow"><span class="eyebrow-text">Einblicke</span></div>
+    <h2 class="section-title reveal">Wirtshaus, <em>Wiesn</em> & Tradition</h2>
+  </div>
+  <div class="gallery-grid reveal">
+    <div class="g1"></div><div class="g2"></div><div class="g3"></div>
+    <div class="g4"></div><div class="g5"></div><div class="g6"></div>
+  </div>
+</div>
+
+<div class="panorama">
+  <div class="panorama-overlay">
+    <div class="panorama-text">
+      <p>„Bayern ist nicht nur ein Bundesland — es ist eine Lebensart. Und wir kochen sie seit 1363."</p>
+      <cite>— Zum Franziskaner, München</cite>
+    </div>
+  </div>
+</div>
+
+<section class="events" id="veranstaltungen">
+  <div class="section-eyebrow"><span class="eyebrow-text">Veranstaltungen</span></div>
+  <h2 class="section-title reveal">Feiern Sie bei <em>uns</em></h2>
+  <p class="section-body reveal">Von der Firmenfeier bis zur Familienfeier — unsere Veranstaltungsräume bieten den perfekten Rahmen für jeden Anlass.</p>
+  <div class="events-grid">
+    <div class="event-card reveal">
+      <div class="event-icon">🎉</div>
+      <div class="event-title">Private Events</div>
+      <p class="event-desc">Geburtstage, Jubiläen, Firmenessen — wir kümmern uns um alles, von der Tischdekoration bis zum exklusiven Menü. Unser Event-Team steht für Ihre Planung bereit.</p>
+      <div class="event-capacity">10–150 Personen</div>
+    </div>
+    <div class="event-card reveal">
+      <div class="event-icon">🏢</div>
+      <div class="event-title">Business Dinner</div>
+      <p class="event-desc">Geschäftsessen in historischem Ambiente — die Residenzstraße 9 ist die perfekte Adresse für Ihre Geschäftspartner aus aller Welt. Separées auf Anfrage.</p>
+      <div class="event-capacity">bis 50 Personen</div>
+    </div>
+    <div class="event-card reveal">
+      <div class="event-icon">🍺</div>
+      <div class="event-title">WirtshausWiesn</div>
+      <p class="event-desc">Das Oktoberfest-Gefühl das ganze Jahr — unsere WirtshausWiesn bringt bayerische Stimmung in jeden Abend. Löwenbräu, Weißwürste und echte bayerische Gemütlichkeit.</p>
+      <div class="event-capacity">Ganzjährig täglich</div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="bewertungen">
+  <div class="section-eyebrow"><span class="eyebrow-text">Gästestimmen</span></div>
+  <h2 class="section-title reveal">660 Jahre — und <em>immer noch</em> der beste</h2>
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">„Die Weißwürste sind authentisch und der Senf ist einfach überragend. Ein Pflichtbesuch für jeden, der nach München kommt. Das Ambiente macht jeden Besuch zu etwas Besonderem."</p>
+      <div class="review-author">— Claudia B., Frankfurt</div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">„Wir haben hier unsere Betriebsfeier für 80 Personen ausgerichtet. Organisation war perfekt, das Essen hervorragend und das Team unglaublich aufmerksam. Nächstes Jahr wieder!"</p>
+      <div class="review-author">— Michael S., München</div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">„Der Schweinsbraten ist der beste, den ich je gegessen habe. Das Bier, die Atmosphäre, die Lage neben der Residenz — alles perfekt. Danke für einen unvergesslichen Abend!"</p>
+      <div class="review-author">— Anna K., Berlin</div>
+    </div>
+  </div>
+</section>
+
+<section class="info" id="kontakt">
+  <div class="section-eyebrow"><span class="eyebrow-text">Besuch & Kontakt</span></div>
+  <h2 class="section-title reveal">Finden Sie <em>uns</em></h2>
+  <div class="info-grid">
+    <div class="info-block reveal">
+      <h3>Adresse & Kontakt</h3>
+      <div class="info-row"><span class="info-label">Adresse</span><span class="info-value">Residenzstraße 9<br>80333 München</span></div>
+      <div class="info-row"><span class="info-label">Telefon</span><span class="info-value"><a href="tel:+498923181120">089 23181120</a></span></div>
+      <div class="info-row"><span class="info-label">Fax</span><span class="info-value">089 23181238</span></div>
+      <div class="info-row"><span class="info-label">E-Mail</span><span class="info-value"><a href="mailto:reservierung@zum-franziskaner.de">reservierung@zum-franziskaner.de</a></span></div>
+      <div class="info-row"><span class="info-label">Web</span><span class="info-value"><a href="https://zum-franziskaner.de" target="_blank">zum-franziskaner.de</a></span></div>
+    </div>
+    <div class="info-block reveal">
+      <h3>Öffnungszeiten</h3>
+      <div class="info-time-row"><span class="day">Montag – Sonntag</span><span class="time">10:00 – 00:00</span></div>
+      <div class="info-time-row"><span class="day">Frühschoppen</span><span class="time">10:00 – 11:30</span></div>
+      <div class="info-time-row"><span class="day">Küche</span><span class="time">10:00 – 22:30</span></div>
+      <p style="font-size:0.78rem;color:var(--text-muted);margin-top:1rem">An Feiertagen können die Zeiten abweichen. Bitte informieren Sie sich vorab telefonisch.</p>
+    </div>
+    <div class="info-block reveal">
+      <h3>Anfahrt</h3>
+      <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.7">Direkt an der Residenzstraße 9, neben der Münchner Residenz. U-Bahn: Odeonsplatz (U3/U4/U5/U6). Tram: Theatinerstraße. Parkhaus: Hofgarten oder Maximilianstraße.</p>
+      <div style="margin-top:1.5rem">
+        <a href="https://maps.google.com/?q=Residenzstraße+9+München" target="_blank" class="btn-secondary" style="font-size:0.78rem;padding:0.6rem 1.2rem">Auf Google Maps öffnen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="section-eyebrow" style="justify-content:center"><span class="eyebrow-text">Reservierung</span></div>
+  <h2 class="section-title reveal" style="text-align:center">Ihr Tisch in <em>660 Jahren</em> Geschichte</h2>
+  <p class="section-body" style="text-align:center">Reservieren Sie jetzt. Für Gruppen und Events stehen unsere Separées für 10–150 Personen zur Verfügung — der Event-Konfigurator hilft bei der Planung.</p>
+  <div class="cta-actions reveal">
+    <a href="tel:+498923181120" class="btn-primary">📞 089 23181120</a>
+    <a href="mailto:reservierung@zum-franziskaner.de" class="btn-secondary">Per E-Mail anfragen</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">Zum Franziskaner<span>.</span></div>
+      <p class="footer-desc">Bayerische Küche und Gastlichkeit seit 1363 — Residenzstraße 9, 80333 München. Täglich geöffnet 10:00–00:00 Uhr. Familie Reinbold heißt Sie willkommen.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <ul>
+        <li><a href="#geschichte">Geschichte</a></li>
+        <li><a href="#speisekarte">Speisekarte</a></li>
+        <li><a href="#veranstaltungen">Veranstaltungen</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Rechtliches</h4>
+      <ul>
+        <li><a href="#">Impressum</a></li>
+        <li><a href="#">Datenschutz</a></li>
+        <li><a href="#">AGB</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Zum Franziskaner München. Alle Rechte vorbehalten.</span>
+    <span>Website für Demonstrationszwecke</span>
+  </div>
+</footer>
+
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"></polyline></svg>
+</button>
+
+<div id="cookie-banner">
+  <p>Wir verwenden Cookies, um Ihre Erfahrung zu verbessern. Details in unserer <a href="#">Datenschutzerklärung</a>.</p>
+  <button class="cookie-btn" onclick="document.getElementById('cookie-banner').classList.add('hidden');localStorage.setItem('cookies','accepted')">Akzeptieren</button>
+</div>
+
+<script>
+window.addEventListener('load', () => {
+  document.getElementById('preloader').classList.add('gone');
+  document.getElementById('hero-bg').classList.add('loaded');
+});
+if(localStorage.getItem('cookies')) document.getElementById('cookie-banner').classList.add('hidden');
+
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('nav');
+  const progress = document.getElementById('scroll-progress');
+  const btn = document.getElementById('back-to-top');
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+  btn.classList.toggle('visible', window.scrollY > 400);
+  const total = document.body.scrollHeight - window.innerHeight;
+  progress.style.width = (window.scrollY / total * 100) + '%';
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
