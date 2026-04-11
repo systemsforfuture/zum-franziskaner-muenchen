@@ -63,5 +63,45 @@ section{padding:7rem 5vw}.section-label{display:inline-flex;align-items:center;g
 <section id="contact"><div class="section-label">Reservierung</div><h2 class="section-title">Besuchen Sie uns</h2><p class="section-text">Wir freuen uns auf Ihren Besuch in München.</p><div class="contact-grid"><div class="contact-cards"><div class="c-card"><div class="c-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div><h4>Adresse</h4><p>Residenzstraße 9<br>80333 München</p></div><div class="c-card"><div class="c-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.12.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0122 16.92z"/></svg></div><h4>Telefon</h4><p>089 / 23 18 12 0</p></div><div class="c-card"><div class="c-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><h4>Öffnungszeiten</h4><p>Mo — So: 10:00 — 00:00 Uhr</p></div><div class="c-card"><div class="c-card-icon"></div><h4>Anfahrt</h4><p>Zentral in München<br>Gute ÖPNV-Anbindung</p></div></div><div class="contact-map"><iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=Zum+Franziskaner+München&zoom=15" allowfullscreen loading="lazy"></iframe></div></div></section>
 <footer class="footer"><div class="footer-inner"><div class="footer-brand"><h3>Zum Franziskaner</h3><p>Traditionelle bayerische Küche mit Weißwürsten, Leberkäs und Löwenbräu vom Fass in München.</p></div><div class="footer-col"><h4>Navigation</h4><ul><li><a href="#about">Über uns</a></li><li><a href="#menu">Speisekarte</a></li><li><a href="#gallery">Galerie</a></li><li><a href="#reviews">Bewertungen</a></li></ul></div><div class="footer-col"><h4>Kontakt</h4><ul><li><a href="tel:0892318120">089 / 23 18 12 0</a></li><li><a>Residenzstraße 9<br>80333 München</a></li></ul></div><div class="footer-col"><h4>Öffnungszeiten</h4><ul><li><a>Mo — So: 10:00 — 00:00 Uhr</a></li></ul></div></div><div class="footer-bottom"><p>© 2025 Zum Franziskaner, München. Alle Rechte vorbehalten.</p><p>Crafted with ♦ by SYSTEMS™</p></div></footer>
 <script>window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>80)});const o=new IntersectionObserver((e)=>{e.forEach(t=>{if(t.isIntersecting){t.target.style.opacity='1';t.target.style.transform='translateY(0)'}});},{threshold:.1,rootMargin:'0px 0px -50px 0px'});document.querySelectorAll('section,.feature,.menu-item,.review,.c-card,.g-item').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(30px)';el.style.transition='opacity .8s ease,transform .8s ease';o.observe(el)});document.querySelector('.nav').style.opacity='1';document.querySelector('.nav').style.transform='none';document.querySelector('.hero').style.opacity='1';document.querySelector('.hero').style.transform='none';</script>
+
+<!-- Impressum Modal -->
+<div id="impressum-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.7);overflow-y:auto">
+  <div style="max-width:700px;margin:40px auto;background:#fff;color:#222;border-radius:12px;padding:40px;position:relative;font-family:system-ui,-apple-system,sans-serif;line-height:1.6">
+    <button onclick="document.getElementById(impressum-modal).style.display=none" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:24px;cursor:pointer;color:#666">&times;</button>
+    <h2 style="margin-top:0;font-size:1.5rem">Impressum</h2>
+    <p><strong>Angaben gem&auml;&szlig; &sect; 5 TMG</strong></p>
+    <p>[VERIFIZIEREN] Name des Inhabers<br>[VERIFIZIEREN] Stra&szlig;e Nr.<br>[VERIFIZIEREN] PLZ Stadt</p>
+    <p><strong>Kontakt:</strong><br>Telefon: [VERIFIZIEREN]<br>E-Mail: [VERIFIZIEREN]</p>
+    <p><strong>Umsatzsteuer-ID:</strong><br>gem&auml;&szlig; &sect;27a UStG: [VERIFIZIEREN]</p>
+    <p><strong>Verantwortlich f&uuml;r den Inhalt nach &sect; 55 Abs. 2 RStV:</strong><br>[VERIFIZIEREN] Name<br>[VERIFIZIEREN] Adresse</p>
+    <h3>Haftungsausschluss</h3>
+    <p><strong>Haftung f&uuml;r Inhalte:</strong> Die Inhalte unserer Seiten wurden mit gr&ouml;&szlig;ter Sorgfalt erstellt. F&uuml;r die Richtigkeit, Vollst&auml;ndigkeit und Aktualit&auml;t der Inhalte k&ouml;nnen wir jedoch keine Gew&auml;hr &uuml;bernehmen.</p>
+    <p><strong>Haftung f&uuml;r Links:</strong> Unser Angebot enth&auml;lt Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben.</p>
+  </div>
+</div>
+
+<!-- Datenschutz Modal -->
+<div id="datenschutz-modal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.7);overflow-y:auto">
+  <div style="max-width:700px;margin:40px auto;background:#fff;color:#222;border-radius:12px;padding:40px;position:relative;font-family:system-ui,-apple-system,sans-serif;line-height:1.6">
+    <button onclick="document.getElementById(datenschutz-modal).style.display=none" style="position:absolute;top:16px;right:16px;background:none;border:none;font-size:24px;cursor:pointer;color:#666">&times;</button>
+    <h2 style="margin-top:0;font-size:1.5rem">Datenschutzerkl&auml;rung</h2>
+    <h3>1. Datenschutz auf einen Blick</h3>
+    <p><strong>Allgemeine Hinweise:</strong> Die folgenden Hinweise geben einen einfachen &Uuml;berblick dar&uuml;ber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie pers&ouml;nlich identifiziert werden k&ouml;nnen.</p>
+    <h3>2. Allgemeine Hinweise und Pflichtinformationen</h3>
+    <p><strong>Datenschutz:</strong> Die Betreiber dieser Seiten nehmen den Schutz Ihrer pers&ouml;nlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerkl&auml;rung.</p>
+    <h3>3. Datenerfassung auf dieser Website</h3>
+    <p><strong>Wer ist verantwortlich?</strong> Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten k&ouml;nnen Sie dem Impressum entnehmen.</p>
+    <p><strong>Wie erfassen wir Ihre Daten?</strong> Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen (z.B. Kontaktformular). Andere Daten werden automatisch beim Besuch der Website durch unsere IT-Systeme erfasst (z.B. Browser, Betriebssystem, Uhrzeit).</p>
+    <h3>4. Hosting</h3>
+    <p>Diese Website wird bei einem externen Dienstleister gehostet. Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert. Grundlage ist Art. 6 Abs. 1 lit. f DSGVO.</p>
+    <h3>5. Ihre Rechte (DSGVO)</h3>
+    <p>Sie haben jederzeit das Recht auf Auskunft, Berichtigung, L&ouml;schung und Einschr&auml;nkung der Verarbeitung Ihrer Daten sowie das Recht auf Daten&uuml;bertragbarkeit gem&auml;&szlig; Art. 15-20 DSGVO. Widerspruchsrecht gem&auml;&szlig; Art. 21 DSGVO.</p>
+  </div>
+</div>
+
+<div style="text-align:center;padding:12px 0;font-size:13px;opacity:0.7;font-family:system-ui,sans-serif">
+  <a href="#" onclick="document.getElementById(impressum-modal).style.display=flex;return false" style="color:inherit;text-decoration:underline;margin:0 12px">Impressum</a>
+  <a href="#" onclick="document.getElementById(datenschutz-modal).style.display=flex;return false" style="color:inherit;text-decoration:underline;margin:0 12px">Datenschutz</a>
+</div>
 </body>
 </html>
